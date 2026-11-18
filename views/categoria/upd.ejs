@@ -1,0 +1,28 @@
+<%- include('../cabecalho')%>
+
+
+    <div>
+        <tr><a href="/categoria"> ← Voltar </a></tr>
+        <h3>Alterar Categoria</h3>
+
+
+        <form method="post">
+            <p>ID</p>
+            <input type="text" name="id" value="<%=categoria.id%>" readonly>
+            <p>Nome</p>
+            <input name="nome" type="text" value="<%=categoria.tipo%>">
+            <br>
+            <p>Tipo</p>
+            <input name="tipo" type="text" value="<%=categoria.tipo%>">
+            <br>
+            <p>Descrição</p>
+            <input type="text" name="descricao" value="<%=categoria.descricao%>">
+            
+            <br><br>
+            <button type="submit">Salvar</button>
+            <button type="reset">Cancelar</button>
+        </form>
+    </div>
+    </body>
+
+    </html>

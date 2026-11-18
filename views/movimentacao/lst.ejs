@@ -1,0 +1,55 @@
+<%- include('../cabecalho')%>
+    <div>
+        <h3>Movimentações</h3>
+        <p>Gerencie as suas movimentações</p>
+        <a href="/movimentacao/add">+ Nova Movimentação</a><br><br>
+
+        <table>
+            <tr>
+                <td>
+                    <h3>Nome</h3>
+                </td>
+                <td>
+                    <h3>Descrição</h3>
+                </td>
+                <td>
+                    <h3>Valor</h3>
+                </td>
+                <td>
+                    <h3>Data</h3>
+                </td>
+                <td>
+                    <h3>Tipo</h3>
+                </td>
+                <td>
+                    <h3>Ação </h3>
+                </td>
+            </tr>
+            <%movimentacoes.forEach(movimentacao=>{%>
+                <tr>
+                    <td>
+                        <%=movimentacao.nome%>
+                    </td>
+                    <td>
+                        <%=movimentacao.descricao%>
+                    </td>
+                    <td>
+                        <%=movimentacao.valor%>
+                    </td>
+                    <td>
+                        <%=movimentacao.data%>
+                    </td>
+                    <td>
+                        <%=movimentacao.tipo%>
+                    </td>
+                    <td>
+                        <a href="/movimentacao/upd/<%=movimentacao.id%>">✏️</a>
+                        <a href="/movimentacao/del/<%=movimentacao.id%>">🗑️</a>
+                    </td>
+                </tr>
+                <%})%>
+        </table>
+    </div>
+    </body>
+
+    </html>

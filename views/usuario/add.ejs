@@ -1,0 +1,27 @@
+<%- include('../cabecalho')%>
+
+
+    <div>
+        <tr><a href="/usuario"> ← Voltar </a></tr>
+        <h3>Novo Usuário</h3>
+
+
+        <form method="post" enctype="multipart/form-data">
+            <p>Nome</p>
+            <input type="text" name="nome" required>
+            <br>
+            <p>Biografia</p>
+            <input name="biografia" type="text" required>
+            <br>
+            <p>Senha</p>
+            <input name="senha" type="text" required>
+            <br>
+            <input name="foto" type="file" accept="image/png">
+            <br><br>
+            <button type="submit">Adicionar</button>
+            <button type="reset">Cancelar</button>
+        </form>
+    </div>
+    </body>
+
+    </html>

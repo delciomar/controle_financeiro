@@ -1,0 +1,41 @@
+<%- include('../cabecalho')%>
+    <div>
+        <h3>Usuários</h3>
+        <a href="/usuario/add">+ Novo Usuário</a>
+
+        <table>
+            <tr>
+                <td>
+                    <h3>Foto</h3>
+                </td>
+                <td>
+                    <h3>Nome</h3>
+                </td>
+                <td>
+                    <h3>Biografia</h3>
+                </td>
+                <td>
+                    <h3>Ação </h3>
+                </td>
+            </tr>
+            <%usuarios.forEach(usuario=>{%>
+                <tr>
+                    <td><img src="<%=usuario.foto%>" width="90" height="90"
+                            style="object-fit: cover; border-radius: 8px;"></td>
+                    <td>
+                        <%=usuario.nome%>
+                    </td>
+                    <td>
+                        <%=usuario.biografia%>
+                    </td>
+                    <td>
+                        <a href="/usuario/upd/<%=usuario.id%>">✏️</a>
+                        <a href="/usuario/del/<%=usuario.id%>">🗑️</a>
+                    </td>
+                </tr>
+                <%})%>
+        </table>
+    </div>
+    </body>
+
+    </html>
