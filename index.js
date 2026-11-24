@@ -153,6 +153,15 @@ app.post('/movimentacao/upd/:id',  async (req, res) => {
   res.render("movimentacao/lst", {movimentacoes});
 })
 
+//rota para pesquisar instrumento por nome
+app.post('/movimentacao/lst', async (req, res) => {
+  const { pesquisar } = req.body;
+  const movimentacoes = await Movimentacao.find({
+    nome: new RegExp(pesquisar, 'i')
+  });
+  res.render("movimentacao/lst", { movimentacoes });
+})
+
 
 app.listen(PORT, () => {
     console.log(`servidor rodando em http://localhost:${PORT}`);

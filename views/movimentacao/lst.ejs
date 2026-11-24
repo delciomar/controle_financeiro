@@ -3,7 +3,8 @@
         <h3>Movimentações</h3>
         <p>Gerencie as suas movimentações</p>
         <a href="/movimentacao/add">+ Nova Movimentação</a><br><br>
-
+        <input type="text" name="pesquisar" placeholder="Procurar Movimentação">
+        <input type="submit" value="Buscar">
         <table>
             <tr>
                 <td>
@@ -34,10 +35,10 @@
                         <%=movimentacao.descricao%>
                     </td>
                     <td>
-                        <%=movimentacao.valor%>
+                        <%=Number(movimentacao.valor).toLocaleString('pt-BR', {style: 'currency' , currency: 'BRL' })%>
                     </td>
                     <td>
-                        <%=movimentacao.data%>
+                        <%=new Date(movimentacao.data).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' })%>
                     </td>
                     <td>
                         <%=movimentacao.tipo%>
