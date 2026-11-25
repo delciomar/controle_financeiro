@@ -1,41 +1,32 @@
 <%- include('../cabecalho')%>
-<div>
-    <h3>Categorias</h3>
-    <a href="/categoria/add">+ Nova Categoria</a><br><br>
-
-    <table>
-        <tr>
-            <td>
-                <h3>Nome</h3>
-            </td>
-            <td>
-                <h3>Tipo</h3>
-            </td>
-            <td>
-                <h3>Descrição</h3>
-            </td>
-            <td>
-                <h3>Ação </h3>
-            </td>
-        </tr>
-        <%categorias.forEach(categoria=>{%>
+    <div>
+        <h3>Categorias</h3>
+        <a href="/categoria/add">+ Nova Categoria</a><br><br>
+        <form method="post" action="/categoria">
+            <input type="text" name="pesquisar" placeholder="Nome da categoria">
+            <input type="submit" value="Buscar">
+        </form>
+        <table>
             <tr>
                 <td>
-                    <%=categoria.nome%>
+                    <h3>Tipo</h3>
                 </td>
                 <td>
-                    <%=categoria.tipo%>
-                </td>
-                <td>
-                    <%=categoria.descricao%>
-                </td>
-                <td>
-                    <a href="/categoria/upd/<%=categoria.id%>">✏️</a>
-                    <a href="/categoria/del/<%=categoria.id%>">🗑️</a>
+                    <h3>Ação </h3>
                 </td>
             </tr>
-            <%})%>
-    </table>
+            <%categorias.forEach(categoria=>{%>
+                <tr>
+                    <td>
+                        <%=categoria.tipo%>
+                    </td>
+                    <td>
+                        <a href="/categoria/upd/<%=categoria.id%>">✏️</a>
+                        <a href="/categoria/del/<%=categoria.id%>">🗑️</a>
+                    </td>
+                </tr>
+                <%})%>
+        </table>
     </div>
     </body>
 

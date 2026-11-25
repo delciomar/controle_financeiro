@@ -3,8 +3,10 @@
         <h3>Movimentações</h3>
         <p>Gerencie as suas movimentações</p>
         <a href="/movimentacao/add">+ Nova Movimentação</a><br><br>
-        <input type="text" name="pesquisar" placeholder="Procurar Movimentação">
-        <input type="submit" value="Buscar">
+        <form method="post" action="/movimentacao">
+            <input type="text" name="pesquisar" placeholder="Procurar Movimentação">
+            <input type="submit" value="Buscar">
+        </form>
         <table>
             <tr>
                 <td>
@@ -21,6 +23,9 @@
                 </td>
                 <td>
                     <h3>Tipo</h3>
+                </td>
+                <td>
+                    <h3>Categoria</h3>
                 </td>
                 <td>
                     <h3>Ação </h3>
@@ -42,6 +47,11 @@
                     </td>
                     <td>
                         <%=movimentacao.tipo%>
+                    </td>
+                    <td>
+                        <%if(movimentacao.categoria_id){%>
+                            <%=movimentacao.categoria_id.tipo%>
+                                <%}%>
                     </td>
                     <td>
                         <a href="/movimentacao/upd/<%=movimentacao.id%>">✏️</a>

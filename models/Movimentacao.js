@@ -4,7 +4,12 @@ const MovimentacaoSchema = new conexao.Schema({
   descricao:{type:String,required:false},
   valor:{type:Number,required:false},
   data: {type: Date,required: true},
-  tipo:{type:String, required:false}
+  tipo:{type:String, required:false},
+  categoria_id: {
+    type: conexao.Schema.Types.ObjectId,
+    ref: "Categoria",
+    required: true
+  }
 
 
 });

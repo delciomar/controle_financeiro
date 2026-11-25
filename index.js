@@ -90,8 +90,8 @@ app.get('/categoria/add',  (req, res) => {
 })
 //Rota POST pra gravar no Banco de Dados
 app.post('/categoria/add',  async (req, res) => {
-  const {nome,tipo,descricao} = req.body
-  await Categoria.create({nome,tipo,descricao})
+  const {tipo} = req.body
+  await Categoria.create({tipo})
   res.render("categoria/add");
 })
 
@@ -109,30 +109,61 @@ app.get('/categoria/upd/:id', async  (req, res) => {
 })
 
 app.post('/categoria/upd/:id',  async (req, res) => {
-  const {nome,tipo,descricao} = req.body
-  await Categoria.findByIdAndUpdate(req.params.id, {nome,tipo,descricao})
+  const {tipo} = req.body
+  await Categoria.findByIdAndUpdate(req.params.id, {tipo})
    const categorias = await Categoria.find()
   res.render("categoria/lst", {categorias});
 })
+
+//rota para pesquisar instrumento por nome
+app.post('/categoria', async (req, res) => {
+  const { pesquisar } = req.body;
+  const categorias = await Categoria.find({
+    tipo: new RegExp(pesquisar, 'i')
+  });
+  res.render("categoria/lst", { categorias });
+})
+
 
 // especie em cima 
 
 //
 
-app.get('/movimentacao/add', (req, res) => {
+/*app.get('/movimentacao/add', (req, res) => {
     res.render("movimentacao/add");
 })
+*/
+
+app.get('/movimentacao/add', async (req, res) => {
+  const categorias = await Categoria.find();
+  res.render("movimentacao/add", { categorias });
+})
+
 
 app.get('/movimentacao', async (req, res) => {
-    const movimentacoes = await Movimentacao.find()
+    const movimentacoes = await Movimentacao.find().populate("categoria_id")
     res.render("movimentacao/lst", {movimentacoes});
 })
 
-app.post('/movimentacao/add',  async (req, res) => {
+/*app.post('/movimentacao/add',  async (req, res) => {
   const {nome,descricao,valor,data,tipo} = req.body
   await Movimentacao.create({nome,descricao,valor,data,tipo})
   res.render("movimentacao/add");
-})
+}) */
+
+app.post('/movimentacao/add', async (req, res) => {
+  const {nome, descricao , valor, data, tipo, categoria_id} = req.body;
+
+  await Movimentacao.create({
+    nome,
+    descricao,
+    valor,
+    data,
+    tipo,
+    categoria_id
+  });
+  res.redirect("/movimentacao/add");
+});
 
 app.get('/movimentacao/del/:id', async (req, res) => {
   await Movimentacao.findByIdAndDelete(req.params.id)
@@ -154,7 +185,7 @@ app.post('/movimentacao/upd/:id',  async (req, res) => {
 })
 
 //rota para pesquisar instrumento por nome
-app.post('/movimentacao/lst', async (req, res) => {
+app.post('/movimentacao', async (req, res) => {
   const { pesquisar } = req.body;
   const movimentacoes = await Movimentacao.find({
     nome: new RegExp(pesquisar, 'i')
